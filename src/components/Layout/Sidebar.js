@@ -1,39 +1,15 @@
-import logo200Image from 'assets/img/logo/logo_200.png';
-import sidebarBgImage from 'assets/img/sidebar/sidebar-4.jpg';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
 import {
-  MdAccountCircle,
-  MdArrowDropDownCircle,
-  MdBorderAll,
-  MdBrush,
-  MdChromeReaderMode,
-  MdDashboard,
-  MdExtension,
-  MdGroupWork,
+
   MdInsertChart,
-  MdKeyboardArrowDown,
-  MdNotificationsActive,
-  MdPages,
-  MdRadioButtonChecked,
-  MdSend,
-  MdStar,
-  MdTextFields,
-  MdViewCarousel,
-  MdViewDay,
-  MdViewList,
-  MdWeb,
-  MdWidgets,
+
   MdExplore,
-  MdFlightLand,
   MdLocalTaxi,
   MdList
 } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import {
-  // UncontrolledTooltip,
-  Collapse,
   Nav,
   Navbar,
   NavItem,
@@ -44,48 +20,14 @@ import bn from 'utils/bemnames';
 const sidebarBackground = {
 };
 
-const navComponents = [
-  { to: '/buttons', name: 'buttons', exact: false, Icon: MdRadioButtonChecked },
-  {
-    to: '/button-groups',
-    name: 'button groups',
-    exact: false,
-    Icon: MdGroupWork,
-  },
-  { to: '/forms', name: 'forms', exact: false, Icon: MdChromeReaderMode },
-  { to: '/input-groups', name: 'input groups', exact: false, Icon: MdViewList },
-  {
-    to: '/dropdowns',
-    name: 'dropdowns',
-    exact: false,
-    Icon: MdArrowDropDownCircle,
-  },
-  { to: '/badges', name: 'badges', exact: false, Icon: MdStar },
-  { to: '/alerts', name: 'alerts', exact: false, Icon: MdNotificationsActive },
-  { to: '/progress', name: 'progress', exact: false, Icon: MdBrush },
-  { to: '/modals', name: 'modals', exact: false, Icon: MdViewDay },
-];
 
-const navContents = [
-  { to: '/typography', name: 'typography', exact: false, Icon: MdTextFields },
-  { to: '/tables', name: 'tables', exact: false, Icon: MdBorderAll },
-];
 
-const pageContents = [
-  { to: '/login', name: 'login / signup', exact: false, Icon: MdAccountCircle },
-  {
-    to: '/login-modal',
-    name: 'login modal',
-    exact: false,
-    Icon: MdViewCarousel,
-  },
-];
 
 const navItems = [
   { to: '/admin', name: 'statistics', exact: true, Icon: MdInsertChart },
-  { to: '/cards', name: 'trips', exact: false, Icon: MdExplore },
-  { to: '/charts', name: 'vehicles', exact: false, Icon: MdLocalTaxi },
-  { to: '/widgets', name: 'reservations', exact: false, Icon: MdList },
+  { to: '/admin/reservations', name: 'reservations', exact: false, Icon: MdList },
+  { to: '/admin/trips', name: 'trips', exact: false, Icon: MdExplore },
+  { to: '/admin/vehicles', name: 'vehicles', exact: false, Icon: MdLocalTaxi },
 ];
 
 const bem = bn.create('sidebar');

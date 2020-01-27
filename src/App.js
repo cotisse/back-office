@@ -14,6 +14,9 @@ import AuthPage from 'pages/AuthPage';
 const ChartPage = React.lazy(() => import('pages/ChartPage'));
 const DashboardPage = React.lazy(() => import('pages/DashboardPage'));
 const FormPage = React.lazy(() => import('pages/FormPage'));
+const Trips = React.lazy(() => import('pages/Trips'));
+const Reservations = React.lazy(() => import('pages/Reservations'));
+const Vehicles = React.lazy(() => import('pages/Vehicles'));
 
 
 const getBasename = () => {
@@ -34,6 +37,14 @@ class App extends React.Component {
                 <AuthPage {...props} />
               )}
             />
+            <LayoutRoute
+              exact
+              path="/"
+              layout={EmptyLayout}
+              component={props => (
+                <AuthPage {...props} />
+              )}
+            />
             {/* <LayoutRoute
               exact
               path="/signup"
@@ -46,6 +57,9 @@ class App extends React.Component {
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
                 <Route exact path="/admin" component={DashboardPage} />
+                <Route exact path="/admin/trips" component={Trips} />
+                <Route exact path="/admin/vehicles" component={Vehicles} />
+                <Route exact path="/admin/reservations" component={Reservations} />
                 <Route exact path="/forms" component={FormPage} />
                 <Route exact path="/charts" component={ChartPage} />
               </React.Suspense>

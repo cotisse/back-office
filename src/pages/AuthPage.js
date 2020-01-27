@@ -21,7 +21,7 @@ class AuthPage extends React.Component {
     this.handlePasswordChange=this.handlePasswordChange.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
   }
-  componentWillMount(){
+  componentDidMount(){
     if(localStorage.getItem('accessToken')){
       this.props.history.push("/admin");
     }
@@ -38,7 +38,6 @@ class AuthPage extends React.Component {
       .then((response) => {
         if(response.status === 200){
           localStorage.setItem('accessToken', response.data.accessToken);
-          console.log(response.data.accessToken);
           this.props.history.push("/admin");
         }
       }

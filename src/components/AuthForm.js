@@ -9,7 +9,6 @@ class AuthForm extends React.Component {
   };
   validateForm() {
     let result = this.props.phoneOrEmail.length > 0 && this.props.password.length > 0;
-    console.log(result);
     return result;
   }
   render() {

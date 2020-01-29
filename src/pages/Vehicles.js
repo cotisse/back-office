@@ -69,7 +69,6 @@ class Vehicles extends Component{
       getAllBrands()
       .then(response =>{
           this.setState({brands : response});
-          
       })
       .catch(error => { 
         this.state.errors.push(error.message);

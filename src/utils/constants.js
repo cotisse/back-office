@@ -1,3 +1,5 @@
+export const ERR_LOGIN = "username or password incorrect!";
+export const BASE_URL = "http://127.0.0.1:8080";
 export const NOTIFICATION_SYSTEM_STYLE = {
   NotificationItem: {
     DefaultStyle: {

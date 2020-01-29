@@ -117,7 +117,7 @@ class DashboardPage extends React.Component {
         
 
         <Row>
-          <Col lg="8" md="12" sm="12" xs="12">
+          <Col lg="7" md="12" sm="12" xs="12">
           <Card>
             <CardHeader>variations of reservations</CardHeader>
             <CardBody>
@@ -126,7 +126,7 @@ class DashboardPage extends React.Component {
           </Card>
           </Col>
 
-          <Col lg="4" md="12" sm="12" xs="12">
+          <Col lg="5" md="12" sm="12" xs="12">
           <Card>
             <CardHeader>percentage of reservations per class</CardHeader>
             <CardBody>

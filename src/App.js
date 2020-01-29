@@ -64,6 +64,7 @@ class App extends React.Component {
                 <Route exact path="/charts" component={ChartPage} />
               </React.Suspense>
             </MainLayout>
+           
             <Redirect to="/admin" />
           </Switch>
         </GAListener>

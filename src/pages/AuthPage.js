@@ -6,7 +6,8 @@ import {
   CardText,
 } from 'reactstrap';
 import axios from 'axios';
-
+import PageSpinner from '../components/PageSpinner';
+import {BASE_URL} from 'utils/constants';
 class AuthPage extends React.Component {
   constructor(props){
     super(props);
@@ -14,7 +15,8 @@ class AuthPage extends React.Component {
      {
        phoneOrEmail : "",
        password : "",
-       error : ""
+       error : "",
+        okay : "login"
      } 
     
     this.handleUsernameChange=this.handleUsernameChange.bind(this);
@@ -28,11 +30,12 @@ class AuthPage extends React.Component {
   }
   async handleSubmit(event){
     event.preventDefault();
+    this.setState({okay : <PageSpinner color='light'/>});
     const form = {
       "phoneOrEmail": this.state.phoneOrEmail,
       "password": this.state.password
       };
-    const response = await axios.post('http://localhost:5001/api/auth/signin',form,
+    const response = await axios.post(BASE_URL+'/api/auth/signin',form,
       {headers: { 'Content-Type': 'application/json' },
       })
       .then((response) => {
@@ -43,7 +46,8 @@ class AuthPage extends React.Component {
       }
       )
       .catch(
-         (error) => {
+        (error) => {
+          this.setState({okay : 'login'});
           if (error.response.status === 401) {
             this.setState({error:<Card inverse className='bg-danger'>
             <CardBody>
@@ -76,7 +80,7 @@ class AuthPage extends React.Component {
         <Col md={6} lg={4}>
           <Card body>
             <div className="text-center card-header">Cotisse-Admin</div>
-            <AuthForm error={error} password={password} phoneOrEmail={phoneOrEmail} onUsernameChange={this.handleUsernameChange} onPasswordChange={this.handlePasswordChange} onFormSubmit={this.handleSubmit}/>
+            <AuthForm btnName={this.state.okay}error={error} password={password} phoneOrEmail={phoneOrEmail} onUsernameChange={this.handleUsernameChange} onPasswordChange={this.handlePasswordChange} onFormSubmit={this.handleSubmit}/>
           </Card>
         </Col>
       </Row>

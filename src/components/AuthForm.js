@@ -30,13 +30,8 @@ class AuthForm extends React.Component {
           size="lg"
           className="bg-gradient-theme-left border-0"
           block type="submit">
-          login
+          {this.props.btnName}
         </Button>
-
-      
-          
-        
-
         {children}
       </Form>
 

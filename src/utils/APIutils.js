@@ -1,3 +1,5 @@
+import {BASE_URL} from 'utils/constants';
+
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
@@ -24,13 +26,19 @@ const request = (options) => {
 
 export function getAllVehicule() {
     return request({
-        url: "http://localhost:5001/api/backoffice/vehicule",
+        url: BASE_URL+"/api/backoffice/vehicule",
         method: 'GET'
     });
 }
 export function getAllClasses() {
     return request({
-        url: "http://localhost:5001/api/backoffice/classes",
+        url: BASE_URL+"/api/backoffice/classes",
+        method: 'GET'
+    });
+}
+export function getAllBrands() {
+    return request({
+        url: BASE_URL+"/api/backoffice/brands",
         method: 'GET'
     });
 }

@@ -1,7 +1,8 @@
 import React,{ Component } from "react";
 import Page from 'components/Page';
-import { getAllVehicule ,getAllClasses, getAllBrands} from '../utils/APIutils';
+import { getAllVehicule ,getAllClasses, getAllBrands,getVehiculeByClass} from '../utils/APIutils';
 import PageSpinner from 'components/PageSpinner';
+import ErrorCard from 'components/Card/ErrorCard';
 import {
     Button,
     Card,
@@ -51,27 +52,30 @@ class Vehicles extends Component{
         this.setState({okay : 'cars'});
       })
       .catch(error => { 
-        this.state.errors.push(error.message);
-
+        this.state.errors.push("Vehicles : "+error.message);
+        this.setState({okay : error.message});
       });
 
       //GET CLASSES
       getAllClasses()
       .then(response =>{
           this.setState({classes : response});
-          
+          this.setState({okay : 'cars'});
       })
       .catch(error => { 
-        this.state.errors.push(error.message);
+        this.state.errors.push("Classes : "+error.message);
+        this.setState({okay : error.message});
       });
 
       //GET BRANDS
       getAllBrands()
       .then(response =>{
           this.setState({brands : response});
+          this.setState({okay : 'cars'});
       })
       .catch(error => { 
-        this.state.errors.push(error.message);
+        this.state.errors.push("Brands : "+error.message);
+        this.setState({okay : error.message});
       });
     }
     handleSubmit(event){
@@ -101,22 +105,17 @@ class Vehicles extends Component{
         })
         .catch((error) => {
           this.setState({buttonText : 'submit'});
-          this.setState({insertError : 
-            <Card inverse className='bg-danger'>
-              <CardBody>
-                <CardText>
-                  {error.response.data.message}
-                </CardText>
-              </CardBody>
-            </Card>
+          this.setState({insertError : <ErrorCard error={error} source="new vehicle" />
           })
         });
     }
     handleVehicleList(props){
         var items = this.state.vehicles.map((vehicule) => 
         <tr key={vehicule.id} >
-            <td>{vehicule.place_number}</td>
             <td>{vehicule.registration}</td>
+            <td>{vehicule.brand}</td>
+            <td>{vehicule.place_number}</td>
+            <td>{vehicule.classe}</td>
         </tr>);
         return (
           <Col lg={6}>
@@ -126,8 +125,10 @@ class Vehicles extends Component{
                 <Table bordered >
                   <thead>
                     <tr>
-                      <th>place_number</th>
                       <th>registration</th>
+                      <th>brand</th>
+                      <th>place number</th>
+                      <th>class</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -137,21 +138,8 @@ class Vehicles extends Component{
               </CardBody>
             </Card>
           </Col>
-        )
-     
-        //afaka misy else to
+        );
     }
-    // spin(props){
-    //   return(
-
-    //     <Col className="" lg={6}>
-    //     <Card>
-    //       <CardHeader>Cars</CardHeader>
-    //       <CardBody><h2>attente...</h2><PageSpinner color='primary'/> </CardBody>
-    //     </Card>
-    //   </Col>
-    //     );
-    // }
     render(){
       //mila verifiena
         const classes = this.state.classes;
@@ -169,8 +157,6 @@ class Vehicles extends Component{
               breadcrumbs={[{ name: 'Vehicles', active: true }]}
             >
             <Row>
-              {/* <h2>{this.state.error != '' && this.state.error}</h2> */}
-              {/* {this.state.okay ? this.handleVehicleList(this.props) : this.spin(this.props)} */}
              {this.handleVehicleList(this.props)}
               <Col lg={6}>
                 <Card>

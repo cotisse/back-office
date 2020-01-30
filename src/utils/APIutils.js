@@ -26,7 +26,13 @@ const request = (options) => {
 
 export function getAllVehicule() {
     return request({
-        url: BASE_URL+"/api/backoffice/vehicule",
+        url: BASE_URL+"/api/backoffice/vehiculeDetails",
+        method: 'GET'
+    });
+}
+export function getVehiculeByClass(classe) {
+    return request({
+        url: BASE_URL+"/api/backoffice/vehicule/"+classe,
         method: 'GET'
     });
 }
@@ -42,7 +48,18 @@ export function getAllBrands() {
         method: 'GET'
     });
 }
-
+export function getAllTrips(){
+    return request({
+        url: BASE_URL+"/api/backoffice/trips",
+        method: 'GET'
+    });
+}
+export function getAllJourney(){
+    return request({
+        url: BASE_URL+"/api/backoffice/destinations",
+        method: 'GET'
+    });
+}
 // export function saveVehicule(vehiculeData){
 //     return request({
 //         url: "http://localhost:5001/api/backOffice/vehicule/save",

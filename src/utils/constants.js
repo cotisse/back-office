@@ -1,6 +1,6 @@
 export const ERR_LOGIN = "username or password incorrect!";
 export const ERR_WEBSERVICE = "something goes wrong, please verify your connection";
-export const BASE_URL = "http://127.0.0.1:5001";
+export const BASE_URL = "https://cotisses5.herokuapp.com";
 export const NOTIFICATION_SYSTEM_STYLE = {
   NotificationItem: {
     DefaultStyle: {

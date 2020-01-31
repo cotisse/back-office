@@ -157,8 +157,17 @@ class Trips extends Component{
         );
     }
     render(){
-       
-
+        var today = new Date();
+        var month = today.getMonth()+1;
+        var day = today.getDate();
+        if(today.getMonth().length < 2 ){
+            month = '0'+today.getMonth()+1;
+        }
+        if(today.getDate().length < 2){
+            day = '0'+today.getDate()
+        } 
+        var date = today.getFullYear()+'-'+(month)+'-'+day;
+        console.log("month length :"+month.length);
         return(
             <Page
               className="Trips"
@@ -182,6 +191,7 @@ class Trips extends Component{
                         <Input
                               type="date"
                               name="date"
+                              min="2020-1-31"
                           />
                         </Col>
                       </FormGroup>

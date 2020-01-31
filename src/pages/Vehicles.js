@@ -82,7 +82,7 @@ class Vehicles extends Component{
       event.preventDefault();
       this.setState({buttonText : <PageSpinner color='light'/>});
       const form = {
-        "id_classe":this.state.selectedClass,
+        "idClasse":this.state.selectedClass,
         "id_brand":this.state.selectedBrand,
         "place_number":this.state.place_number,
         "registration":this.state.registration,

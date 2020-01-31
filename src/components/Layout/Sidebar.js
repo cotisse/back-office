@@ -25,9 +25,9 @@ const sidebarBackground = {
 
 const navItems = [
   { to: '/admin', name: 'statistics', exact: true, Icon: MdInsertChart },
-  { to: '/admin/reservations', name: 'reservations', exact: false, Icon: MdList },
   { to: '/admin/trips', name: 'trips', exact: false, Icon: MdExplore },
   { to: '/admin/vehicles', name: 'vehicles', exact: false, Icon: MdLocalTaxi },
+  { to: '/admin/reservations', name: 'reservations', exact: false, Icon: MdList },
 ];
 
 const bem = bn.create('sidebar');

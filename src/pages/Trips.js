@@ -156,22 +156,26 @@ class Trips extends Component{
             </Col>
         );
     }
+    formatDate() {
+        var d = new Date(),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+    
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+    
+        return [year, month, day].join('-');
+    }
     render(){
-        var today = new Date();
-        var month = today.getMonth()+1;
-        var day = today.getDate();
-        if(today.getMonth().length < 2 ){
-            month = '0'+today.getMonth()+1;
-        }
-        if(today.getDate().length < 2){
-            day = '0'+today.getDate()
-        } 
-        var date = today.getFullYear()+'-'+(month)+'-'+day;
-        console.log("month length :"+month.length);
+        
+        var d = this.formatDate();
         return(
             <Page
               className="Trips"
-              title="Trips"
+              title=""
               breadcrumbs={[{ name: 'Trips', active: true }]}
             >
             <Form>
@@ -191,7 +195,7 @@ class Trips extends Component{
                         <Input
                               type="date"
                               name="date"
-                              min="2020-1-31"
+                              min={d}
                           />
                         </Col>
                       </FormGroup>

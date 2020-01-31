@@ -1,7 +1,4 @@
 
-
-
-
 ## Quick Start
 
 1.  Clone this repository (https://gitlab.com/cotisseMariano/front-end.git)

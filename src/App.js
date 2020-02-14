@@ -45,15 +45,6 @@ class App extends React.Component {
                 <AuthPage {...props} />
               )}
             />
-            {/* <LayoutRoute
-              exact
-              path="/signup"
-              layout={EmptyLayout}
-              component={props => (
-                <AuthPage {...props} authState={STATE_SIGNUP} />
-              )}
-            /> */}
-
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
                 <Route exact path="/admin" component={DashboardPage} />

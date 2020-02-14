@@ -2,6 +2,8 @@ import React,{ Component } from "react";
 import Page from 'components/Page';
 import PageSpinner from 'components/PageSpinner';
 import {getAllClasses, getVehiculeByClass , getAllTrips,getAllJourney} from '../utils/APIutils';
+import axios from 'axios';
+import {BASE_URL} from 'utils/constants';
 
 import {
     Button,
@@ -34,6 +36,7 @@ class Trips extends Component{
             destinations : []
         };
         this.handleClassChange = this.handleClassChange.bind(this);
+        this.saveTrip = this.saveTrip.bind(this);
     }
     componentDidMount(){
         if(!localStorage.getItem("accessToken")){
@@ -119,7 +122,7 @@ class Trips extends Component{
                         <CardBody>
                         <FormGroup >
                             <Col>
-                                <select className="form-control" onChange={this.handleClassChange}>
+                                <select className="form-control" onChange={this.handleClassChange }>
                                 <option disabled="true" selected="true" >choose a class</option>
                                     {classItems}
                                 </select>
@@ -169,6 +172,31 @@ class Trips extends Component{
     
         return [year, month, day].join('-');
     }
+    saveTrip(e){
+        e.preventDefault();
+        const newTrip = {
+            "departure_date":this.state.date,
+            "id_vehicle":this.state.selectedCar,
+            "id_destination":this.state.destination
+        }
+        const response = axios.post(
+            BASE_URL+'/api/backoffice/trip/save',
+            newTrip,
+            {headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+localStorage.getItem('accessToken') }})
+            .then((response) => {
+              if(response.status == 201){
+               alert("saved");
+              }
+            //   this.setState({buttonText : 'submit'});
+            })
+            .catch((error) => {
+                alert(error);
+                console.log(error);
+            //   this.setState({buttonText : 'submit'});
+            //   this.setState({insertError : <ErrorCard error={error} source="new vehicle" />
+            //   })
+            });
+    }
     render(){
         
         var d = this.formatDate();
@@ -193,9 +221,10 @@ class Trips extends Component{
                     <FormGroup >
                         <Col>
                         <Input
-                              type="date"
-                              name="date"
-                              min={d}
+                            onChange={(e) => this.setState({date : e.target.value})}
+                            type="date"
+                            name="date"
+                            min={d}
                           />
                         </Col>
                       </FormGroup>
@@ -210,7 +239,7 @@ class Trips extends Component{
               {/* {this.state.insertError} */}
               <br/>
               <Col className="text-center">
-              <Button className="btn primary">ok</Button>
+              <Button onClick={this.saveTrip} className="btn primary">ok</Button>
               </Col>
             </FormGroup>
             </Row>
